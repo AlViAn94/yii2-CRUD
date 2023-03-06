@@ -2,28 +2,25 @@
 
 namespace frontend\controllers;
 
-use backend\models\News;
-use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 
-
 /**
- *  Class NewsController
+ * Class TagController
  * @package frontend\controllers
  */
-class NewsController extends Controller{
+class TagController extends Controller{
     /**
      * @return string
      */
     public function actionIndex(){
-        return 'You are on page News/index!';
+        return 'You are on page Tag/index!';
     }
 
     /**
-     * @param int $id
+     * @param $id
      * @return string
      */
     public function actionView($id){
-        return 'You are on page News/View, id:' . $id;
+        return 'You are on page Tag/View, id:' . $id;
     }
 }
