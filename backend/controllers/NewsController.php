@@ -1,6 +1,6 @@
 <?php
 
-namespace frontend\controllers;
+namespace backend\controllers;
 
 use backend\models\News;
 use yii\data\ActiveDataProvider;
