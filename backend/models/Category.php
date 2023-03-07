@@ -8,7 +8,11 @@ use Yii;
  * This is the model class for table "{{%category}}".
  *
  * @property int $id
- * @property string|null $category
+ * @property string $slug
+ * @property string $title
+ * @property int $enabled
+ *
+ * @property News[] $news
  */
 class Category extends \yii\db\ActiveRecord
 {
@@ -26,7 +30,10 @@ class Category extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['category'], 'string', 'max' => 255],
+            [['slug', 'title'], 'required'],
+            [['enabled'], 'integer'],
+            [['slug', 'title'], 'string', 'max' => 256],
+            [['slug'], 'unique'],
         ];
     }
 
@@ -37,7 +44,19 @@ class Category extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'category' => Yii::t('app', 'Category'),
+            'slug' => Yii::t('app', 'Slug'),
+            'title' => Yii::t('app', 'Title'),
+            'enabled' => Yii::t('app', 'Enabled'),
         ];
+    }
+
+    /**
+     * Gets query for [[News]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getNews()
+    {
+        return $this->hasMany(News::class, ['category_id' => 'id']);
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-use backend\models\Category;
+use backend\models\News;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
@@ -9,15 +9,14 @@ use yii\grid\GridView;
 /** @var yii\web\View $this */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = Yii::t('app', 'Categories');
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = Yii::t('app', 'News');
 ?>
-<div class="category-index">
+<div class="news-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Category'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Create News'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
 
@@ -27,12 +26,14 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
+            'category_id',
             'slug',
             'title',
-            'enabled',
+            'description:ntext',
+            //'enabled',
             [
                 'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, Category $model, $key, $index, $column) {
+                'urlCreator' => function ($action, News $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
                  }
             ],

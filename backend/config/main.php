@@ -37,14 +37,24 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        /*
         'urlManager' => [
             'enablePrettyUrl' => true,
-            'showScriptName' => false,
+            'showScriptName' => true,
+            'enableStrictParsing' => false,
             'rules' => [
+                // News
+                'news' => 'news/index',
+                'news/<id:[0-9]+>' => 'news/view',
+                // Category
+                'category' => 'category/index',
+                'category/<id:[0-9]+>' => 'category/view',
+                // Tag
+                'tag' => 'tag/index',
+                'tag/<id:[0-9]+>' => 'tag/view',
+                // Web
+                'web' => 'web/index.php'
             ],
         ],
-        */
     ],
     'params' => $params,
 ];

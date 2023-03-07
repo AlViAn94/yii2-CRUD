@@ -8,7 +8,11 @@ use Yii;
  * This is the model class for table "{{%tag}}".
  *
  * @property int $id
- * @property string|null $tag
+ * @property string $slug
+ * @property string $title
+ *
+ * @property News[] $news
+ * @property TagToNews[] $tagToNews
  */
 class Tag extends \yii\db\ActiveRecord
 {
@@ -26,7 +30,9 @@ class Tag extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['tag'], 'string', 'max' => 255],
+            [['slug', 'title'], 'required'],
+            [['slug', 'title'], 'string', 'max' => 256],
+            [['slug'], 'unique'],
         ];
     }
 
@@ -37,7 +43,28 @@ class Tag extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'tag' => Yii::t('app', 'Tag'),
+            'slug' => Yii::t('app', 'Slug'),
+            'title' => Yii::t('app', 'Title'),
         ];
+    }
+
+    /**
+     * Gets query for [[News]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getNews()
+    {
+        return $this->hasMany(News::class, ['id' => 'news_id'])->viaTable('{{%tag_to_news}}', ['tag_id' => 'id']);
+    }
+
+    /**
+     * Gets query for [[TagToNews]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTagToNews()
+    {
+        return $this->hasMany(TagToNews::class, ['tag_id' => 'id']);
     }
 }

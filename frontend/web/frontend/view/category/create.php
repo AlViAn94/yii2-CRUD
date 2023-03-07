@@ -5,14 +5,11 @@ use yii\helpers\Html;
 /** @var yii\web\View $this */
 /** @var backend\models\Category $model */
 
-$this->title = Yii::t('app', 'Update Category: {name}', [
-    'name' => $model->title,
-]);
+$this->title = Yii::t('app', 'Create Category');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Categories'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = Yii::t('app', 'Update');
+$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="category-update">
+<div class="category-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

@@ -27,7 +27,8 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'tag',
+            'slug',
+            'title',
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Tag $model, $key, $index, $column) {
